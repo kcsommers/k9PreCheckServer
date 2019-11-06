@@ -12,10 +12,6 @@ const headers = {
 
 app.use(cors());
 
-app.get('/', (req, res) => {
-  res.send(JSON.stringify({ Hello: 'World' }));
-});
-
 app.get('/sheets', (req, res) => {
   axios.get(`${smartsheetUrl}/sheets`, { headers })
     .then(response => {
