@@ -21,7 +21,7 @@ app.get('/sheets', (req, res) => {
       console.error('Error in sheets route:::: ', e);
       res.sendStatus(500);
     });
-})
+});
 
 app.get('/sheets/k9PreCheck', (req, res) => {
   axios.get(`${smartsheetUrl}/sheets/${process.env.K9_PRECHECK_SHEET}`, { headers })
@@ -32,7 +32,7 @@ app.get('/sheets/k9PreCheck', (req, res) => {
       console.error('Error in sheets/k9PreCheck route:::: ', e);
       res.sendStatus(500);
     });
-})
+});
 
 app.listen(port, () => {
   console.log(`Hooked on ${port}`);
