@@ -23,8 +23,21 @@ app.get('/sheets', (req, res) => {
     });
 });
 
-app.get('/sheets/k9PreCheck', (req, res) => {
-  axios.get(`${smartsheetUrl}/sheets/${process.env.K9_PRECHECK_SHEET}`, { headers })
+app.get('/sheets/:sheet', (req, res) => {
+  const sheetId = req.params.sheet === 'k9PreCheck' ? process.env.K9_PRECHECK_SHEET : process.env.K9_PRECHECK_REGISTRATION_SHEET;
+  axios.get(`${smartsheetUrl}/sheets/${sheetId}`, { headers })
+    .then(response => {
+      res.json(response.data);
+    })
+    .catch(e => {
+      console.error('Error in sheets/k9PreCheck route:::: ', e);
+      res.sendStatus(500);
+    });
+});
+
+app.get('/columns/:sheet', (req, res) => {
+  const sheetId = req.params.sheet === 'k9PreCheck' ? process.env.K9_PRECHECK_SHEET : process.env.K9_PRECHECK_REGISTRATION_SHEET;
+  axios.get(`${smartsheetUrl}/sheets/${sheetId}/columns`, { headers })
     .then(response => {
       res.json(response.data);
     })
